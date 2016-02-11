@@ -1,7 +1,7 @@
 {
   "name": "ember-performance-tracking",
   "version": "0.0.2",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Track how long your transitions take with ajax calls",
   "directories": {
     "doc": "doc",
     "test": "tests"
