@@ -12,7 +12,7 @@ ember g perf-tracking-service perf-tracking-service
 ### Basic Usage
 Once you finish installing, you will see a **service** generated in your app folder. This service extends the base class from the addon and gives you access to the transition data once a transition is complete. **Make sure to not change the file name.**
 ```js
-import BaseServiceTracking from 'ember-cli-performance-tracking/services/performance-tracking';
+import BaseServiceTracking from 'ember-performance-tracking/services/performance-tracking';
 
 export default BaseServiceTracking.extend({
   /**
