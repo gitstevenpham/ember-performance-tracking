@@ -1,25 +1,47 @@
-# Ember-performance-tracking
+# Ember Performance Tracking
 
-This README outlines the details of collaborating on this Ember addon.
+Ember performance tracking is a lightweight library for getting transition times from start of a transition to the final route.
 
 ## Installation
+Installing the library is as easy as:
+```bash
+ember install ember-performance-tracking
+ember g perf-tracking-service perf-tracking-service
+```
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+### Basic Usage
+Once you finish installing, you will see a **service** generated in your app folder. This service extends the base class from the addon and gives you access to the transition data once a transition is complete. **Make sure to not change the file name.**
+```js
+import BaseServiceTracking from 'ember-cli-performance-tracking/services/performance-tracking';
 
-## Running
+export default BaseServiceTracking.extend({
+  /**
+   * OVERRIDE FUNCTION
+   * 
+   * @param  {Object} transitionData Object containing transition timing data
+   */
+  transitionComplete: function (transitionData) {
+    // MODIFY HERE
+  }
+});
+```
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+### Transition Data Example
+```js
+{
+    destinationRoute: "some-parent.child-route.index",
+    duration: 7661.005000000002,
+    end: 8364.785000000002,
+    resources: [
+        duration: 523
+        name: "http://ajaxHostName.com/resource"
+        startTime: 772
+    ],
+    start: 703.7800000000001,
+    startTimestamp: 1455168547958,
+    url: "/some-parent/child-route/"
+}
+```
 
-## Running Tests
-
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+## License
+This addon is released under the MIT License.
