@@ -33,7 +33,7 @@ export default Ember.Service.extend({
   },
   /**
    * Store the destination route and pathname with the end timer.
-   * 
+   *
    * @param  {String} finalRouteName Destination route name
    * @param  {String} finalPathName  Destination pathname expected to be from this.get('router.url') from a route
    * @return {null}                  Returns nothing
@@ -49,7 +49,7 @@ export default Ember.Service.extend({
   },
   /**
    * Get the AJAX calls that were initiated between the start and end
-   * 
+   *
    * @param  {Float} start - Expected to be a DOMHighResTimeStamp offset from the PerformanceTiming.navigationStart property
    * @param  {Float} end   - Expected to be a DOMHighResTimeStamp offset from the PerformanceTiming.navigationStart property
    * @return {Array}         Returns an array AJAX calls with the url,
@@ -61,11 +61,7 @@ export default Ember.Service.extend({
       entries = window.performance.getEntries();
       entries.forEach(function (rs) {
         if (rs.initiatorType === 'xmlhttprequest' && rs.startTime > start && rs.startTime <= end) {
-          resources.push({
-            name: rs.name,
-            duration: Math.ceil(rs.duration),
-            startTime: Math.ceil(rs.startTime)
-          });
+          resources.push(rs);
         }
       });
       return resources;

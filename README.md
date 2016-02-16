@@ -27,18 +27,29 @@ export default BaseServiceTracking.extend({
 ```
 
 ### Transition Data Example
+The transitionData contains the destination route name and the destination pathname. The AJAX calls performed between
+the start and end of the transition will also be included in the resources attribute of the object. The objects in the
+resources array include the duration and the startTime offset from the navigation start from the performance api. 
+
+If the browser supports the performance api, the timings are [DOMHighResTimeStamp](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) which is basically in milliseconds, otherwise (new Date()).getTime() is used which is also in milliseconds
+* **duration:** Time in milliseconds from the start of the transition to the end of the transition
+* **end:** Time offset from navigation start from the performance api
+* **start:** Time offset from navigation start from the performance api
+* **startTimestamp:** Timestamp in milliseconds of the start of the transition
+
 ```js
 {
     destinationRoute: "some-parent.child-route.index",
-    duration: 7661.005000000002,
-    end: 8364.785000000002,
-    resources: [
-        duration: 523
-        name: "http://ajaxHostName.com/resource"
-        startTime: 772
+    duration: 7661.005000000002,                         //DOMHighResTimeStamp (milliseconds)
+    end: 8364.785000000002,                              //DOMHighResTimeStamp (milliseconds)
+    resources: [{
+        duration: 523,                                   //DOMHighResTimeStamp (milliseconds)
+        name: "http://ajaxHostName.com/resource",
+        startTime: 772                                   //DOMHighResTimeStamp (milliseconds)
+      }, ...
     ],
-    start: 703.7800000000001,
-    startTimestamp: 1455168547958,
+    start: 703.7800000000001,                            //DOMHighResTimeStamp (milliseconds)
+    startTimestamp: 1455168547958,                       //Timestamp in milliseconds since epoch
     url: "/some-parent/child-route/"
 }
 ```
