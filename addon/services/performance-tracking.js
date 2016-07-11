@@ -17,8 +17,8 @@ export default Ember.Service.extend({
    * @type {Object}
    */
   currentTransition: {
-    start: window.performance.now(),
-    startTimestamp: (new Date()).getTime()
+    start: 0,
+    startTimestamp: window.performance ? window.performance.timing.navigationStart : (new Date()).getTime()
   },
   /**
    * Create a new object that contains the start timstamp in milliseconds and start attribute using window.performance.now
@@ -60,7 +60,7 @@ export default Ember.Service.extend({
     if (window.performance || window.performance.getEntries) {
       entries = window.performance.getEntries();
       entries.forEach(function (rs) {
-        if (rs.initiatorType === 'xmlhttprequest' && rs.startTime > start && rs.startTime <= end) {
+        if (rs.startTime > start && rs.startTime <= end) {
           resources.push(rs);
         }
       });
