@@ -34,6 +34,7 @@ resources array include the duration and the startTime offset from the navigatio
 If the browser supports the performance api, the timings are [DOMHighResTimeStamp](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) which is basically in milliseconds, otherwise (new Date()).getTime() is used which is also in milliseconds
 * **duration:** Time in milliseconds from the start of the transition to the end of the transition
 * **end:** Time offset from navigation start from the performance api
+* **isInitial:** Indicates if the data is for a hard load (downloading html and static assets) or soft load.
 * **start:** Time offset from navigation start from the performance api
 * **startTimestamp:** Timestamp in milliseconds of the start of the transition
 
@@ -42,6 +43,7 @@ If the browser supports the performance api, the timings are [DOMHighResTimeStam
     destinationRoute: "some-parent.child-route.index",
     duration: 7661.005000000002,                         //DOMHighResTimeStamp (milliseconds)
     end: 8364.785000000002,                              //DOMHighResTimeStamp (milliseconds)
+    isInitial: true,
     resources: [{
         duration: 523,                                   //DOMHighResTimeStamp (milliseconds)
         name: "http://ajaxHostName.com/resource",

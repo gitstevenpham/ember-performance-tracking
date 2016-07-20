@@ -17,15 +17,18 @@ export default Ember.Service.extend({
    * @type {Object}
    */
   currentTransition: {
+    isInitial: true,
     start: 0,
-    startTimestamp: window.performance ? window.performance.timing.navigationStart : (new Date()).getTime()
+    startTimestamp: window.performance.timing ? window.performance.timing.navigationStart : (new Date()).getTime()
   },
   /**
-   * Create a new object that contains the start timstamp in milliseconds and start attribute using window.performance.now
+   * Create a new object that contains the start timstamp in milliseconds and start attribute using
+   * window.performance.now. It is assumed that once this function is called, it is a subsequent transition
    * Store the new object in the service
    */
   startTransition: function () {
     var newTransitionData = {
+      isInitial: false,
       start: window.performance.now(),
       startTimestamp: (new Date()).getTime()
     };
