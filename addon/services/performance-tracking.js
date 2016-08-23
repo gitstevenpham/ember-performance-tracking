@@ -3,13 +3,15 @@ import Ember from 'ember';
 /**
  * If the performance API is missing, polyfill using Date
  */
-if (!window.performance || !window.performance.now) {
-  window.performance = window.performance || {};
-  window.performance.now = function () {
-    return (new Date()).getTime();
-  };
-}
-
+var navigationStart = 0;
+var performanceNow = function() {
+  if ('performance' in window && typeof window.performance.now === 'function' && typeof fastboot === 'undefined') {
+    return window.performance.now();
+  } else {
+    return (new Date).getTime() - navigationStart;
+  }
+};
+navigationStart = window.performance.timing ? window.performance.timing.navigationStart : performanceNow();
 
 export default Ember.Service.extend({
   /**
@@ -19,7 +21,7 @@ export default Ember.Service.extend({
   currentTransition: {
     isInitial: true,
     start: 0,
-    startTimestamp: window.performance.timing ? window.performance.timing.navigationStart : (new Date()).getTime()
+    startTimestamp: navigationStart
   },
   /**
    * Create a new object that contains the start timstamp in milliseconds and start attribute using
@@ -29,8 +31,8 @@ export default Ember.Service.extend({
   startTransition: function () {
     var newTransitionData = {
       isInitial: false,
-      start: window.performance.now(),
-      startTimestamp: (new Date()).getTime()
+      start: performanceNow(),
+      startTimestamp: navigationStart + performanceNow()
     };
     this.set('currentTransition', newTransitionData);
   },
