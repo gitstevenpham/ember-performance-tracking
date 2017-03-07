@@ -1,6 +1,6 @@
 {
   "name": "ember-performance-tracking",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Track how long your transitions take with ajax calls",
   "directories": {
     "doc": "doc",
