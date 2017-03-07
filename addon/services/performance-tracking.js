@@ -62,7 +62,7 @@ export default Ember.Service.extend({
   getResourcesInvolved: function (start, end) {
     var entries,
       resources = [];
-    if (window.performance || window.performance.getEntries) {
+    if (window.performance && window.performance.getEntries) {
       entries = window.performance.getEntries();
       entries.forEach(function (rs) {
         if (rs.startTime > start && rs.startTime <= end) {
