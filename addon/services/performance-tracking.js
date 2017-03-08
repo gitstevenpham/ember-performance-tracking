@@ -45,7 +45,7 @@ export default Ember.Service.extend({
    */
   endTransition: function (finalRouteName, finalPathName) {
     var transitionData = this.get('currentTransition');
-    transitionData.end = window.performance.now();
+    transitionData.end = performanceNow();
     transitionData.duration = transitionData.end - transitionData.start;
     transitionData.destinationRoute = finalRouteName;
     transitionData.url = finalPathName;
