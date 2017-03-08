@@ -11,7 +11,7 @@ var performanceNow = function() {
     return (new Date).getTime() - navigationStart;
   }
 };
-navigationStart = window.performance.timing ? window.performance.timing.navigationStart : performanceNow();
+navigationStart = (window.performance && window.performance.timing) ? window.performance.timing.navigationStart : performanceNow();
 
 export default Ember.Service.extend({
   /**
