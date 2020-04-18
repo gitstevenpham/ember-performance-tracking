@@ -3,8 +3,8 @@ import Service from '@ember/service';
 /**
  * If the performance API is missing, polyfill using Date
  */
-var navigationStart = 0;
-var performanceNow = function() {
+let navigationStart = 0;
+const performanceNow = function() {
   if ('performance' in window && typeof window.performance.now === 'function' && typeof fastboot === 'undefined') {
     return window.performance.now();
   } else {
@@ -29,7 +29,7 @@ export default Service.extend({
    * Store the new object in the service
    */
   startTransition: function () {
-    var newTransitionData = {
+    const newTransitionData = {
       isInitial: false,
       start: performanceNow(),
       startTimestamp: navigationStart + performanceNow()
@@ -44,7 +44,7 @@ export default Service.extend({
    * @return {null}                  Returns nothing
    */
   endTransition: function (finalRouteName, finalPathName) {
-    var transitionData = this.get('currentTransition');
+    const transitionData = this.get('currentTransition');
     transitionData.end = performanceNow();
     transitionData.duration = transitionData.end - transitionData.start;
     transitionData.destinationRoute = finalRouteName;
@@ -60,8 +60,8 @@ export default Service.extend({
    * @return {Array}         Returns an array AJAX calls with the url,
    */
   getResourcesInvolved: function (start, end) {
-    var entries,
-      resources = [];
+    const resources = [];
+    let entries;
     if (window.performance && window.performance.getEntries) {
       entries = window.performance.getEntries();
       entries.forEach(function (rs) {
