@@ -1,7 +1,6 @@
 {
   "name": "ember-performance-tracking",
   "version": "1.0.0",
-  "private": true,
   "description": "Track how long your transitions take with ajax calls",
   "repository": "https://github.com/spham92/ember-performance-tracking",
   "license": "MIT",
