@@ -1,12 +1,14 @@
-import Ember from 'ember';
+import { scheduleOnce } from '@ember/runloop';
+import { inject as service } from '@ember/service';
+import Mixin from '@ember/object/mixin';
 
-export default Ember.Mixin.create({
-  perfTracking: Ember.inject.service('performance-tracking'),
+export default Mixin.create({
+  perfTracking: service('performance-tracking'),
   /**
    * Schedule a function to call the endTransition function of the perfTracking service in afterRender run queue
    */
   didTransition: function() {
-    Ember.run.scheduleOnce('afterRender', () => {
+    scheduleOnce('afterRender', () => {
       this.get('perfTracking').endTransition(this.get('currentRouteName'), this.get('currentURL'));
     });
     return this._super(...arguments);

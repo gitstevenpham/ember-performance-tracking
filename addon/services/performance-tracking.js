@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Service from '@ember/service';
 
 /**
  * If the performance API is missing, polyfill using Date
@@ -13,7 +13,7 @@ var performanceNow = function() {
 };
 navigationStart = (window.performance && window.performance.timing) ? window.performance.timing.navigationStart : performanceNow();
 
-export default Ember.Service.extend({
+export default Service.extend({
   /**
    * Initialize the TransitionData object that holds information about a transition
    * @type {Object}

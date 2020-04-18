@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import EmberRouter from '@ember/routing/router';
 import RoutePerf from 'ember-performance-tracking/mixins/route-perf';
 
 export function initialize() {
-  Ember.Router.reopen(RoutePerf);
+  EmberRouter.reopen(RoutePerf);
 }
 
 export default {
